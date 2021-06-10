@@ -21,6 +21,9 @@ namespace EmployeeModule
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                }).ConfigureLogging(builder =>
+                {
+                    builder.AddLog4Net();
                 });
     }
 }
