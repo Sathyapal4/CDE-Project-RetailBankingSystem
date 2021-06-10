@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionsModule", "TransactionsModule\TransactionsModule.csproj", "{0230F057-2459-464F-AFA0-41DCDEFF032E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTransactionsModule", "TestTransactionsModule\TestTransactionsModule.csproj", "{0DB625BE-6DBC-46A7-AF0D-552335AB2B88}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0230F057-2459-464F-AFA0-41DCDEFF032E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0230F057-2459-464F-AFA0-41DCDEFF032E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0230F057-2459-464F-AFA0-41DCDEFF032E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0230F057-2459-464F-AFA0-41DCDEFF032E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DB625BE-6DBC-46A7-AF0D-552335AB2B88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DB625BE-6DBC-46A7-AF0D-552335AB2B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DB625BE-6DBC-46A7-AF0D-552335AB2B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DB625BE-6DBC-46A7-AF0D-552335AB2B88}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E1E7AE44-1349-453E-88B9-E9D8F7DD4FAE}
+	EndGlobalSection
+EndGlobal
