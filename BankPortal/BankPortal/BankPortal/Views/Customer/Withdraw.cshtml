@@ -1,0 +1,49 @@
+﻿@model RetailBankingClient.Models.Transaction.Account
+
+@{
+    ViewData["Title"] = "Withdraw";
+}
+
+@if (ViewBag.Success)
+{
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Withdraw successful!</strong>@Html.ActionLink("check balance", "GetAccount", "Customer")
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<h3>Withdraw</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Withdraw">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<label asp-for="AccountId" class="control-label font-weight-bold">Enter Account ID</label>
+                    <input asp-for="AccountId" class="form-control" />*@
+                <label asp-for="AccountId" class="control-label font-weight-bold">Select Your Account Id</label>
+                <select asp-for="AccountId" asp-items="@(new SelectList(@ViewBag.AccountIds))" required>
+                </select>
+                <span asp-validation-for="AccountId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label font-weight-bold">Enter Amount</label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Narration" class="control-label font-weight-bold"></label>
+                <input asp-for="Narration" class="form-control" />
+                <span asp-validation-for="Narration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Withdraw" class="btn btn-primary" />
+                <input type="button" value="Cancel" class="btn btn-primary" onclick="location.href='@Url.Action("HomePage", "Authentication")'" />
+            </div>
+        </form>
+    </div>
+</div>

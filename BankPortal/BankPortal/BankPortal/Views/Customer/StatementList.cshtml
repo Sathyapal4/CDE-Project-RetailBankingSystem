@@ -1,0 +1,85 @@
+﻿@model IEnumerable<RetailBankingClient.Models.Account.Statement>
+
+@{
+    ViewData["Title"] = "StatementList";
+}
+
+<h3>Statement List</h3>
+<div class="container mb-3 mt-3">
+    <table class="table table-striped table-bordered text-center mydatatable" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AccountId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Narration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RefNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Withdrawal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Deposit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClosingBalance)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccountId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Narration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RefNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Withdrawal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Deposit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClosingBalance)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<input type="button" value="Back" class="btn btn-primary float-right" onclick="location.href='@Url.Action("Homepage", "Authentication")'" />
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudfare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $('.mydatatable').DataTable({
+        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    });
+</script>

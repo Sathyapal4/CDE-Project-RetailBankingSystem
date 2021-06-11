@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BankPortal.Models.Customer>
+
+@{
+    ViewData["Title"] = "ViewCustomers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="
+https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+<h3>All Customers</h3>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.cs" rel="stylesheet">
+
+<p>
+    <a asp-action="CreateCustomer">Add New Customer</a>
+</p>
+
+
+
+
+<table id="example" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PAN)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @item.CreatedAt.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PAN)
+                </td>
+                <td>
+
+                    @Html.ActionLink("View Account Details", "ViewCustomerAccountDetails", new { id = item.CustomerId })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

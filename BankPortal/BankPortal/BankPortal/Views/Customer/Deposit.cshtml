@@ -1,0 +1,46 @@
+﻿@model RetailBankingClient.Models.Transaction.Account
+
+@{
+    ViewData["Title"] = "Deposit";
+}
+
+@if (ViewBag.Success == true)
+{
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Deposit successful!</strong> @Html.ActionLink("go to home", "HomePage", "Authentication")
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<h3>Deposit</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Deposit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AccountId" class="control-label font-weight-bold">Enter Account ID</label>
+                <input asp-for="AccountId" class="form-control" />
+                <span asp-validation-for="AccountId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label font-weight-bold">Enter Amount</label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Narration" class="control-label font-weight-bold"></label>
+                <input asp-for="Narration" class="form-control" />
+                <span asp-validation-for="Narration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Deposit" class="btn btn-primary" />
+                <input type="button" value="Cancel" class="btn btn-primary" onclick="location.href='@Url.Action("HomePage", "Authentication")'" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<RetailBankingClient.Models.Account.AccountDetails>
+
+@{
+    ViewData["Title"] = "GetCustomerAccounts";
+}
+
+<h3>Accounts</h3>
+<br />
+<h5> Customer ID : @ViewBag.cusId</h5>
+<br />
+<table class="table text-center">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Balance)
+            </th>
+
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Balance) <span>&#8377;</span>
+                </td>
+                <td>
+                    <a asp-action="GetAccountStatement" asp-controller="Customer" asp-route-id="@item.AccountId">
+                        <small>View Statements</small>
+                    </a>
+                </td>
+                <td>
+                    <a asp-action="ViewTransactions" asp-controller="Customer" asp-route-id="@item.AccountId">
+                        <small>View Transactions</small>
+                    </a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td></td>
+            <td><b>Total Balance</b></td>
+            <td>@ViewBag.TotalBalance <span>&#8377;</span></td>
+        </tr>
+    </tbody>
+</table>
+<input type="button" value="Back" class="btn btn-primary float-right" onclick="location.href='@Url.Action("HomePage", "Authentication")'" />
+

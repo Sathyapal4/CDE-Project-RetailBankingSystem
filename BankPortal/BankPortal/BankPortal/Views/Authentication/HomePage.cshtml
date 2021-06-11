@@ -1,0 +1,144 @@
+﻿@model BankPortal.Models.UserRequest
+@{
+    ViewData["Title"] = "HomePage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+<link rel="stylesheet" href="~/css/navigation.css" />
+
+@if (Model.Role == Role.Customer)
+{
+    <div class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 ">
+                    <div class="service-box">
+                        <div class="service-icon blue1">
+                            <div class="front-content">
+                                <i class="material-icons">payments</i>
+                                <h3>Withdraw</h3>
+                            </div>
+                        </div>
+                        <a class="service-content" asp-area="" asp-controller="Customer" asp-action="Withdraw">
+                            <h3>Withdraw</h3>
+                            <p> Withdraw cash from your account<br /></p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 ">
+                    <div class="service-box">
+                        <div class="service-icon blue2">
+                            <div class="front-content">
+                                <i class="material-icons">savings</i>
+                                <h3>Deposit</h3>
+                            </div>
+                        </div>
+                        <a class="service-content" asp-area="" asp-controller="Customer" asp-action="Deposit">
+                            <h3>Deposit</h3>
+                            <p>Deposit cash to your account</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 ">
+                    <div class="service-box">
+                        <div class="service-icon blue3">
+                            <div class="front-content">
+                                <i class="material-icons">money</i>
+                                <h3>Transfer</h3>
+                            </div>
+                        </div>
+                        <a class="service-content" asp-area="" asp-controller="Customer" asp-action="Transfer">
+                            <h3>Transfer</h3>
+                            <p> Transfer money to another account</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 ">
+                    <div class="service-box">
+                        <div class="service-icon blue4">
+                            <div class="front-content">
+                                <i class="material-icons">account_balance</i>
+                                <h3>Balance</h3>
+                            </div>
+                        </div>
+                        <a class="service-content" asp-area="" asp-controller="Customer" asp-action="GetCustomerAccounts" asp-route-id="@ViewBag.Id">
+                            <h3>Balance</h3>
+                            <p> View your account balance</p>
+                        </a>
+                    </div>
+                </div>
+                @*<div class="col-md-3 col-sm-6">
+                        <div class="service-box ">
+                            <div class="service-icon blue1">
+                                <div class="front-content">
+                                    <i class="material-icons">account_balance_wallet</i>
+                                    <h3>Statements</h3>
+                                </div>
+                            </div>
+                            <a class="service-content" asp-area="" asp-controller="Customer" asp-action="GetAccountSatement">
+                                <h3>Statements</h3>
+                                <p>View your statements</p>
+                            </a>
+                        </div>
+                    </div>*@
+                @*<div class="col-md-3 col-sm-6">
+                        <div class="service-box">
+                            <div class="service-icon blue2">
+                                <div class="front-content">
+                                    <i class="material-icons">history</i>
+                                    <h3>Transaction History</h3>
+                                </div>
+                            </div>
+                            <a class="service-content" asp-area="" asp-controller="Customer" asp-action="ViewTransactions" >
+                                <h3>History</h3>
+                                <p>View transaction history</p>
+                            </a>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+}
+
+else
+{
+    <div class="text-center">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="service-box ">
+                        <div class="service-icon blue3">
+                            <div class="front-content">
+                                <i class="material-icons">people</i>
+                                <h3>View All Customers</h3>
+                            </div>
+                        </div>
+                        <a class="service-content" asp-area="" asp-controller="Employee" asp-action="ViewCustomers">
+                            <h3>View All Customers</h3>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="service-box">
+                        <div class="service-icon blue4">
+                            <div class="front-content">
+                                <i class="material-icons">person_add</i>
+                                <h3>Add Customer</h3>
+                            </div>
+                        </div>
+                        <a class="service-content" asp-area="" asp-controller="Employee" asp-action="CreateCustomer">
+                            <h3>Add Customer</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+

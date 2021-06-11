@@ -1,0 +1,31 @@
+﻿@model RetailBankingClient.Models.Account.AccountDetails
+
+@{
+    ViewData["Title"] = "AccountBalance";
+}
+
+<h1>Account Balance</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AccountId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Balance)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Balance)
+        </dd>
+
+        <a asp-action="GetAccountStatement" asp-controller="Customer" asp-route-id="@Model.AccountId">
+           View Statements
+        </a>
+    </dl>
+</div>
+<input type="button" value="Back" class="btn btn-primary" onclick="location.href='@Url.Action("HomePage", "Authentication")'" />
+

@@ -1,0 +1,49 @@
+﻿@model RetailBankingClient.Models.Transaction.Transfer
+
+@{
+    ViewData["Title"] = "Transfer";
+}
+
+
+
+
+<h3>Transfer</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Transfer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Source_AccountId" class="control-label"></label>
+                @*<input asp-for="Source_AccountId" class="form-control" />*@
+                <select asp-for="Source_AccountId" asp-items="@(new SelectList(@ViewBag.AccountIds))" required>
+                </select>
+                <span asp-validation-for="Source_AccountId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Target_AccountId" class="control-label"></label>
+                <input asp-for="Target_AccountId" class="form-control" />
+
+                <span asp-validation-for="Target_AccountId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Transfer" class="btn btn-primary" />
+                <input type="button" value="Cancel" class="btn btn-primary" onclick="location.href='@Url.Action("HomePage", "Authentication")'" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Homepage" asp-controller="Authentication">Go to Homepage</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
