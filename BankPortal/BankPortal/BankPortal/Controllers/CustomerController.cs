@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RetailBankingClient.Models.Account;
@@ -14,6 +13,7 @@ namespace BankPortal.Controllers
 {
     public class CustomerController : Controller
     {
+        //private log4net.ILog _logger = log4net.LogManager.GetLogger(typeof(AccountController));
         private readonly IAccountService AccountProvider;
         private readonly ITransactionService TransactionProvider;
         private IHttpContextAccessor newHttpContextAccessor;
@@ -80,9 +80,10 @@ namespace BankPortal.Controllers
                         return View("CustomError");
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    ViewBag.Message = e.Message;
+                    //_logger.Error("Exceptions Occured as " + ex.Message);
+                    ViewBag.Message = ex.Message;
                     return View("CustomError");
                 }
             }
@@ -130,7 +131,7 @@ namespace BankPortal.Controllers
                     }
                     else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                     {
-                        ViewBag.Message = "Zero accounts found for this Account ID";
+                        ViewBag.Message = "No Account found for this Account ID";
                         return View("CustomError");
                     }
                     else if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
@@ -144,9 +145,10 @@ namespace BankPortal.Controllers
                         return View("CustomError");
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    ViewBag.Message = e.Message;
+                    //_logger.Error("Exceptions Occured as " + ex.Message);
+                    ViewBag.Message = ex.Message;
                     return View("CustomError");
                 }
             }
@@ -167,6 +169,7 @@ namespace BankPortal.Controllers
 
             if (obj != null)
             {
+                //var id = (int)HttpContext.Session.GetInt32("UserId");
                 GetStatement model = new GetStatement { Id = id };
                 return View(model);
             }
@@ -220,9 +223,10 @@ namespace BankPortal.Controllers
                         return View("CustomError");
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    ViewBag.Message = e.Message;
+                    //_logger.Error("Exceptions Occured as " + ex.Message);
+                    ViewBag.Message = ex.Message;
                     return View("CustomError");
                 }
             }
@@ -283,7 +287,7 @@ namespace BankPortal.Controllers
                     }
                     else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                     {
-                        ViewBag.Message = "Zero Accounts found for this Account ID";
+                        ViewBag.Message = "Zero accounts found for this Account ID";
                         return View("CustomError");
                     }
                     else if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
@@ -297,9 +301,9 @@ namespace BankPortal.Controllers
                         return View("CustomError");
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    ViewBag.Message = e.Message;
+                    ViewBag.Message = ex.Message;
                     return View("CustomError");
 
                 }
@@ -391,9 +395,10 @@ namespace BankPortal.Controllers
                         return View("CustomError");
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    ViewBag.Message = e.Message;
+                    //_logger.Error("Exceptions Occured as " + ex.Message);
+                    ViewBag.Message = ex.Message;
                     return View("CustomError");
                 }
             }
@@ -434,6 +439,7 @@ namespace BankPortal.Controllers
                         AccountDetails details = new AccountDetails();
                         details.AccountId = result.AccountId;
                         return RedirectToAction(actionName: "Deposit", controllerName: "Customer", new { success = true });
+                        //return await GetAccount(details);
                     }
                     else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                     {
@@ -456,9 +462,10 @@ namespace BankPortal.Controllers
                         return View("CustomError");
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    ViewBag.Message = e.Message;
+                    //_logger.Error("Exceptions Occured as " + ex.Message);
+                    ViewBag.Message = ex.Message;
                     return View("CustomError");
                 }
             }
@@ -492,14 +499,14 @@ namespace BankPortal.Controllers
                     }
                     else if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                     {
-                        ViewBag.Message = "Server issue while adding the record";
+                        ViewBag.Message = "Server issue while adding record";
                         return View("CustomError");
                     }
 
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    ViewBag.Message = e.Message;
+                    ViewBag.Message = ex.Message;
                     return View("CustomError");
                 }
 

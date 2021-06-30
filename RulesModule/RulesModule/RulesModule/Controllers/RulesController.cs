@@ -11,7 +11,7 @@ namespace RulesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class RulesController : ControllerBase
     {
         private readonly IRulesRepository newRulesRepository;

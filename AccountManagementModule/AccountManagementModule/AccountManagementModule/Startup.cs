@@ -37,7 +37,11 @@ namespace AccountManagementModule
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1.0", new OpenApiInfo { Title = "Web API", Version = "1.0" });
+                c.SwaggerDoc("v1.0", new OpenApiInfo 
+                { 
+                    Title = "Account Management Module", 
+                    Version = "1.0" 
+                });
             });
 
             services.AddTransient<IAccountRepository, AccountRepository>();

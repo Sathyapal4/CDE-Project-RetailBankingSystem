@@ -15,6 +15,8 @@ namespace EmployeeModule.Models
             modelBuilder.Entity<Employee>().HasData(
                     new Employee { Id = 1, Email = "Sathya@gmail.com", Password = "Sathya@123" },
                     new Employee { Id = 2, Email = "Sathyapal@gmail.com", Password = "Sathyapal@123" }
+                    
+
                 );
             base.OnModelCreating(modelBuilder);
         }

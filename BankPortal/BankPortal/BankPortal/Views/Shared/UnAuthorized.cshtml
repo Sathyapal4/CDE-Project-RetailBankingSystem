@@ -4,6 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3 style="color:red;text-align:center">Unauthorised Access</h3>
-<a asp-action="Logout" asp-controller="Authentication">Home</a>
+
+<div class="p-3 mb-2 bg-warning text-dark" style="text-align:center">Unauthorised Access</div>
+
+<div style="text-align:center">
+<a asp-action="Logout" asp-controller="Authentication">Logout</a>
+</div>
 

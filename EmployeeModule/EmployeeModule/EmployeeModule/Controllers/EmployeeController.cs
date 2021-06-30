@@ -21,7 +21,7 @@ namespace EmployeeModule.Controllers
         }
 
         [HttpGet("[action]")]
-        [Authorize(Roles = "Employee")]
+        //[Authorize(Roles = "Employee")]
         public IActionResult GetAllEmployees()
         {
             List<Employee> employees = newEmployeeRepository.GetAllEmployee();

@@ -22,8 +22,8 @@ namespace BankPortal.Services
         {
             using (HttpClient client = new HttpClient())
             {
-                //client.BaseAddress = new Uri("http://localhost:5005");
-                client.BaseAddress = new Uri("PUT AZURE DEPLOYED LINK OF TRANSACTION SERVICE HERE");
+                client.BaseAddress = new Uri("http://localhost:38441");
+                //client.BaseAddress = new Uri("PUT AZURE DEPLOYED TRANSACTION MODULE LINK HERE");
                 //Link Body Part{/api/Account/Deposit}
                 string token = newHttpContextAccessor.HttpContext.Session.GetString("Token");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -40,8 +40,8 @@ namespace BankPortal.Services
             {
                 string token = newHttpContextAccessor.HttpContext.Session.GetString("Token");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                //client.BaseAddress = new Uri("http://localhost:5005");
-                client.BaseAddress = new Uri("PUT AZURE DEPLOYED LINK OF TRANSACTION SERVICE HERE");
+                client.BaseAddress = new Uri("http://localhost:38441");
+                //client.BaseAddress = new Uri("PUT AZURE DEPLOYED TRANSACTION MODULE LINK HERE");
                 //Link Body Part{/api/Account/Withdraw}
                 var payload = new StringContent(JsonConvert.SerializeObject(withdraw), Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("api/Transaction/Withdraw", payload);
@@ -53,8 +53,8 @@ namespace BankPortal.Services
         {
             using (HttpClient client = new HttpClient())
             {
-                //client.BaseAddress = new Uri("http://localhost:5005");
-                client.BaseAddress = new Uri("PUT AZURE DEPLOYED LINK OF TRANSACTION SERVICE HERE");
+                client.BaseAddress = new Uri("http://localhost:38441");
+                //client.BaseAddress = new Uri("PUT AZURE DEPLOYED TRANSACTION MODULE LINK HERE");
                 string token = newHttpContextAccessor.HttpContext.Session.GetString("Token");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var payload = new StringContent(JsonConvert.SerializeObject(transfer), Encoding.UTF8, "application/json");
@@ -67,8 +67,8 @@ namespace BankPortal.Services
         {
             using (HttpClient client = new HttpClient())
             {
-                //client.BaseAddress = new Uri("http://localhost:5005");
-                client.BaseAddress = new Uri("PUT AZURE DEPLOYED LINK OF TRANSACTION SERVICE HERE");
+                client.BaseAddress = new Uri("http://localhost:38441");
+                //client.BaseAddress = new Uri("PUT AZURE DEPLOYED TRANSACTION MODULE LINK HERE");
                 string token = newHttpContextAccessor.HttpContext.Session.GetString("Token");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var response = await client.GetAsync("api/Transaction/GetTransactions/" + id);

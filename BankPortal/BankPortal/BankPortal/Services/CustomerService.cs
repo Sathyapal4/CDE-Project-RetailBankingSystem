@@ -17,17 +17,21 @@ namespace BankPortal.Services
             newHttpContextAccessor = httpContextAccessor;
         }
 
-       
+        
         public async Task<HttpResponseMessage> CreateCustomer(Customer model)
         {
 
 
             using (HttpClient client = new HttpClient())
             {
+
+                
+
+
                 string token = newHttpContextAccessor.HttpContext.Session.GetString("Token");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                //client.BaseAddress = new Uri("http://localhost:5002");
-                client.BaseAddress = new Uri("PUT AZURE DEPLOYED LINK OF CUSTOMER SERVICE HERE");
+                client.BaseAddress = new Uri("http://localhost:60994");
+                //client.BaseAddress = new Uri("PUT AZURE DEPLOYED CUSTOMER MODULE LINK HERE");
                 var jsonstring = JsonConvert.SerializeObject(model);
                 var obj = new StringContent(jsonstring, System.Text.Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("api/Customers/createCustomer", obj);
@@ -41,8 +45,8 @@ namespace BankPortal.Services
             {
                 string token = newHttpContextAccessor.HttpContext.Session.GetString("Token");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                //client.BaseAddress = new Uri("http://localhost:5002");
-                client.BaseAddress = new Uri("PUT AZURE DEPLOYED LINK OF CUSTOMER SERVICE HERE");
+                client.BaseAddress = new Uri("http://localhost:60994");
+                //client.BaseAddress = new Uri("PUT AZURE DEPLOYED CUSTOMER MODULE LINK HERE");
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/Json"));
 
                 var response = await client.GetAsync("api/Customers/getCustomerDetails/" + id);
@@ -50,13 +54,13 @@ namespace BankPortal.Services
             }
         }
 
-        
+       
         public async Task<HttpResponseMessage> GetCustomers()
         {
             using (HttpClient client = new HttpClient())
             {
-                //client.BaseAddress = new Uri("http://localhost:5002");
-                client.BaseAddress = new Uri("PUT AZURE DEPLOYED LINK OF CUSTOMER SERVICE HERE");
+                client.BaseAddress = new Uri("http://localhost:60994");
+                //client.BaseAddress = new Uri("PUT AZURE DEPLOYED CUSTOMER MODULE LINK HERE");
                 string token = newHttpContextAccessor.HttpContext.Session.GetString("Token");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/Json"));

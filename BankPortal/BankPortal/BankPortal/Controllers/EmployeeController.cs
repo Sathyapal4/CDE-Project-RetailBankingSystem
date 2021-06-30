@@ -12,21 +12,19 @@ namespace BankPortal.Controllers
     public class EmployeeController : Controller
     {
        
-        IAccountService newAccountservice;
-        ICustomerService newProvider;
-        IConfiguration newConfig;
+        IAccountService accountservice;
+        ICustomerService _provider;
+        IConfiguration _config;
         
-        public EmployeeController( IAccountService accountService, ICustomerService provider, IConfiguration config)
+        public EmployeeController( IAccountService repo2, ICustomerService provider, IConfiguration config)
         {
           
-            newAccountservice = accountService;
-            newProvider = provider;
-            newConfig = config;
+            accountservice = repo2;
+            _provider = provider;
+            _config = config;
         }
 
-        //public EmployeeController()
-        //{
-        //}
+        
 
 
         //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -48,7 +46,7 @@ namespace BankPortal.Controllers
 
             try
             {
-                var response = await newProvider.GetCustomerDetails(id);
+                var response = await _provider.GetCustomerDetails(id);
                 if (response.IsSuccessStatusCode)
                 {
                     var JsonContent = await response.Content.ReadAsStringAsync();
@@ -56,7 +54,7 @@ namespace BankPortal.Controllers
                     //account account micro service to get listof accounts
 
 
-                    var result = await newAccountservice.GetCustomerAccounts(id);
+                    var result = await accountservice.GetCustomerAccounts(id);
 
                     list = JsonConvert.DeserializeObject<List<Account>>(await result.Content.ReadAsStringAsync());
 
@@ -66,12 +64,12 @@ namespace BankPortal.Controllers
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
-                    ViewBag.Message = "No any record Found! Bad Request";
+                    ViewBag.Message = "No records Found!";
                     return View("CustomError");
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                 {
-                    ViewBag.Message = "Having server issue while adding record";
+                    ViewBag.Message = "Server issue while adding record";
                     return View("CustomError");
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
@@ -109,7 +107,7 @@ namespace BankPortal.Controllers
                 customers = new List<Customer>();
                 try
                 {
-                    var response = await newProvider.GetCustomers();
+                    var response = await _provider.GetCustomers();
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         var JsonContent = await response.Content.ReadAsStringAsync();
@@ -139,13 +137,13 @@ namespace BankPortal.Controllers
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         [HttpGet]
-        public async Task<IActionResult> CreateCustomer(bool success=false)
+        public IActionResult CreateCustomer(bool success = false)
         {
             ViewBag.Success = success;
 
             var obj = SessionHelper.GetObject<UserRequest>(HttpContext.Session, "CurrentUser");
             if (obj != null && obj.Role == Role.Employee)
-                return  View();
+                return View();
             else
                 return View("UnAuthorized");
 
@@ -173,7 +171,7 @@ namespace BankPortal.Controllers
                 }
                
 
-                var response = await newProvider.CreateCustomer(customer);
+                var response = await _provider.CreateCustomer(customer);
                 if (response.IsSuccessStatusCode)
                 {
                     var jsoncontent = await response.Content.ReadAsStringAsync();
@@ -182,22 +180,22 @@ namespace BankPortal.Controllers
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                 {
-                    ModelState.AddModelError("", "Having server issue while adding record");
-                    ViewBag.Message = "Having server issue while adding record";
+                    ModelState.AddModelError("", "Server issue while adding record");
+                    ViewBag.Message = "Server issue while adding record";
                     return View("CustomError");
 
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
                 {
-                    ModelState.AddModelError("", "Username already present with ID :" + customer.CustomerId);
-                    ViewBag.Message = "Username already present with ID: " + customer.CustomerId;
+                    ModelState.AddModelError("", "Username already exists with ID :" + customer.CustomerId);
+                    ViewBag.Message = "Username already exists with ID: " + customer.CustomerId;
 
                     return View("CustomError");
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
-                    ModelState.AddModelError("", "Invalid model states");
-                    ViewBag.Message = "InValid Model States";
+                    ModelState.AddModelError("", "Unable to process the request, Model error");
+                    ViewBag.Message = "Unable to process the request, Model error";
                     return View("CustomError");
                 }
             }
@@ -222,7 +220,8 @@ namespace BankPortal.Controllers
 
 
 }
-//}
+
+
 
 
 

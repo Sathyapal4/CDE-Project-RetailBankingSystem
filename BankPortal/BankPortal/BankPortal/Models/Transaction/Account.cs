@@ -38,6 +38,6 @@ namespace RetailBankingClient.Models.Transaction
     }
     public enum Trans_Status_Description
     {
-        Cancelled, Completed, Disputed
+        Completed, Cancelled, Disputed
     }
 }

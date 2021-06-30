@@ -1,7 +1,6 @@
 using BankPortal.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,10 +23,6 @@ namespace BankPortal
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
-
-
-
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(10);
@@ -35,18 +30,20 @@ namespace BankPortal
                 options.Cookie.IsEssential = true;
             });
             services.AddControllersWithViews();
+            //services.AddSingleton<ICustomerRepository, CustomerRepository>();
+            //services.AddSingleton<IAccountRepository, AccountRepository>();
             services.AddSingleton<ICustomerService, CustomerService>();
             services.AddSingleton<IAccountService, AccountService>();
             services.AddSingleton<ITransactionService, TransactionService>();
             services.AddHttpContextAccessor();
             services.AddSession();
 
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSession();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -57,21 +54,14 @@ namespace BankPortal
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
-            app.UseSession();
-
             app.UseAuthorization();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapRazorPages();
-            //});
-
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

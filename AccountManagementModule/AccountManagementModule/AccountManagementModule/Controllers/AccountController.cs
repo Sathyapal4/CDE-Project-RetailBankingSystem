@@ -10,7 +10,7 @@ namespace AccountManagementModule.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   // [Authorize]
+    //[Authorize]
     public class AccountController : ControllerBase
     {
         private readonly IAccountRepository newAccountRepository;
@@ -21,7 +21,7 @@ namespace AccountManagementModule.Controllers
         }
 
         [HttpPost("[action]")]
-       // [Authorize(Roles = "Employee")]
+      // [Authorize(Roles = "Employee")]
         public IActionResult CreateAccount([FromBody] CustomerID customerID)
         {
             try

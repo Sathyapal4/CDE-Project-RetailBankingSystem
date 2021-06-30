@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace AuthenticationModule.AuthenticationsRepository
+namespace AuthenticationModule.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -20,6 +20,7 @@ namespace AuthenticationModule.AuthenticationsRepository
             newLoginRepository = loginRepository;
         }
         [HttpPost("[action]")]
+        //[Route("/Home")]
         public IActionResult Login([FromBody] UserRequest userRequest)
         {
             try
@@ -31,7 +32,7 @@ namespace AuthenticationModule.AuthenticationsRepository
             }
             catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error Try Again After Some Time");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error! Try again later.");
                 throw e;
             }
         }

@@ -20,8 +20,8 @@ namespace BankPortal.Services
             {
                 //Base URI
 
-                //data.BaseAddress = new Uri("http://localhost:5004");
-                data.BaseAddress = new Uri("PUT AZURE DEPLOYED LINK OF ACCOUNT SERVICE HERE");
+                data.BaseAddress = new Uri("http://localhost:5004");
+                //data.BaseAddress = new Uri("PUT AZURE DEPLOYED ACCOUNT MODULE LINK HERE");
 
                 string token = newHttpContextAccessor.HttpContext.Session.GetString("Token");
                 data.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -37,8 +37,8 @@ namespace BankPortal.Services
             using (HttpClient client = new HttpClient())
             {
                 //Base URI
-                //client.BaseAddress = new Uri("http://localhost:5004");
-                client.BaseAddress = new Uri("PUT AZURE DEPLOYED LINK OF ACCOUNT SERVICE HERE");
+                client.BaseAddress = new Uri("http://localhost:5004");
+                //client.BaseAddress = new Uri("PUT AZURE DEPLOYED ACCOUNT MODULE LINK HERE");
                 string token = newHttpContextAccessor.HttpContext.Session.GetString("Token");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/Json"));
@@ -53,8 +53,8 @@ namespace BankPortal.Services
             using (HttpClient client = new HttpClient())
             {
                 //Base URI
-                //client.BaseAddress = new Uri("http://localhost:5004");
-                client.BaseAddress = new Uri("PUT AZURE DEPLOYED LINK OF ACCOUNT SERVICE HERE");
+                client.BaseAddress = new Uri("http://localhost:5004");
+                //client.BaseAddress = new Uri("PUT AZURE DEPLOYED ACCOUNT MODULE LINK HERE");
                 string token = newHttpContextAccessor.HttpContext.Session.GetString("Token");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 

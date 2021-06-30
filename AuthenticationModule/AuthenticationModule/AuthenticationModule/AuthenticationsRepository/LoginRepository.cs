@@ -1,4 +1,5 @@
 ﻿using AuthenticationModule.Models;
+using log4net;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -11,24 +12,26 @@ namespace AuthenticationModule.AuthenticationsRepository
 {
     public class LoginRepository : ILoginRepository
     {
-        private readonly ICustomerService newCustomerService;
-        private readonly IEmployeeService newEmployeeService;
-        private readonly IConfiguration newConfiguration;
+        private readonly ILog _logger = LogManager.GetLogger(typeof(LoginRepository));
+        private readonly ICustomerService _customerService;
+        private readonly IEmployeeService _employeeService;
+        private readonly IConfiguration _configuration;
 
         public LoginRepository(ICustomerService customerService, IEmployeeService employeeService, IConfiguration configuration)
         {
-            newCustomerService = customerService;
-            newEmployeeService = employeeService;
-            newConfiguration = configuration;
+            _customerService = customerService;
+            _employeeService = employeeService;
+            _configuration = configuration;
         }
 
         public UserResponse Login(UserRequest userRequest)
         {
             try
             {
+                _logger.Info("Login Method called in Login Repository");
                 if (userRequest.Role == Role.Customer)
                 {
-                    UserResponse userResponse = newCustomerService.CheckUser(userRequest);
+                    UserResponse userResponse = _customerService.CheckUser(userRequest);
                     if (userResponse != null)
                     {
                         string token = GenerateJsonWebToken(userResponse.Id, Role.Customer);
@@ -42,7 +45,7 @@ namespace AuthenticationModule.AuthenticationsRepository
                 }
                 else if (userRequest.Role == Role.Employee)
                 {
-                    UserResponse userResponse = newEmployeeService.CheckUser(userRequest);
+                    UserResponse userResponse = _employeeService.CheckUser(userRequest);
                     if (userResponse != null)
                     {
                         string token = GenerateJsonWebToken(userResponse.Id, Role.Employee);
@@ -57,14 +60,16 @@ namespace AuthenticationModule.AuthenticationsRepository
             }
             catch (Exception e)
             {
-                throw e;
+                _logger.Error(e.Message);
+                throw;
             }
         }
 
 
         private string GenerateJsonWebToken(int customerId, Role role)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(newConfiguration["JWT:SecretKey"]));
+            _logger.Info("Generate JsonWebToken");
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:SecretKey"]));
             var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new List<Claim>()
             {
@@ -72,8 +77,8 @@ namespace AuthenticationModule.AuthenticationsRepository
                 new Claim(ClaimTypes.Role,role.ToString())
             };
             var tokenDescriptor = new JwtSecurityToken(
-                issuer: newConfiguration["JWT:Issuer"],
-                audience: newConfiguration["JWT:Audience"],
+                issuer: _configuration["JWT:Issuer"],
+                audience: _configuration["JWT:Audience"],
                 expires: DateTime.Now.AddMinutes(15),
                 claims: claims,
                 signingCredentials: signingCredentials

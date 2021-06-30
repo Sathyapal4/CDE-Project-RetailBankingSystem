@@ -10,8 +10,11 @@
     <h4>Transaction Status</h4>
     <hr />
     <dl class="row">
+        <div>Transfer completed successfully.</div>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Trans_Status_Code)
+            
+
+             @Html.DisplayNameFor(model => model.Trans_Status_Code)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Trans_Status_Code)
@@ -25,5 +28,5 @@
     </dl>
 </div>
 <div>
-    <a asp-action="HomePage" asp-controller="Authentication">Back to Homepage</a>
+    <a asp-action="HomePage" asp-controller="Authentication">Homepage</a>
 </div>

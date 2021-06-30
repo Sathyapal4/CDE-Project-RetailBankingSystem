@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 
-namespace AuthenticationAPI.Tests
+namespace AuthenticationModule.Tests
 {
     public class TestAuthenticationController
     {

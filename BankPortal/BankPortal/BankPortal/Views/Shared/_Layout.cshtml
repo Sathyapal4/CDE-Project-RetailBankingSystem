@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Bank Portal</title>
+    <title>@ViewData["Title"] - RetailBank</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,9 +15,9 @@
 
     @if (x != null)
     {
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-info border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" href="PUT MAIN APPLICATION'S AZURE LINK HERE"><img src="/Images/iconblk.png" class="logoimg" alt="logo">  KangalBank</a>
+                <a class="navbar-brand" href="http://localhost:6451/Authentication/HomePage"> <!--<img src="/Images/" class="logoimg" alt="logo"> --><i class="material-icons">account_balance</i> RetailBank</a>
                 <button class="btn btn-outline-dark justify-content-end" href="#sidenav" data-toggle="collapse" data-target="#sidenav">
                     <i class="material-icons">more_vert</i>
                 </button>
@@ -28,8 +28,8 @@
         <div class="container-fluid">
             <div class="row">
                 <nav class="col-md-3 col-lg-2 bg-light navbar-collapse collapse sidebar" id="sidenav">
-                    <div class="sidebar-sticky flex-column w-100 mt-1">
-                        <ul class="nav flex-column">
+                    <div class="sidebar-sticky flex-column w-100 mt-1 align-content-end float-md-right">
+                        <ul class="nav flex-column" style="align-content:center">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">
                                     <i class="material-icons" style="font-size:50px">account_circle</i><br />@x.Email
@@ -63,8 +63,9 @@
 
     <footer class="border-top footer text-muted">
         <div class="container" style="text-align:center">
-           Bank Portal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            Retail Bank - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy.</a>&nbsp;&nbsp;Follow us on <i class="material-icons">facebook</i>
         </div>
+       
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

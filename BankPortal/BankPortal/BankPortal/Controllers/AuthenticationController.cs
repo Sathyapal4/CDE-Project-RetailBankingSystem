@@ -54,8 +54,8 @@ namespace BankPortal.Controllers
                 //  3. put that jsong string json object
                 //  4.call the microservice
 
-                //client.BaseAddress = new Uri("http://localhost:5001");
-                client.BaseAddress = new Uri("PUT AZURE DEPLOYED LINK OF AUTHENTICATION MODULE");
+                client.BaseAddress = new Uri("http://localhost:5142");
+                //client.BaseAddress = new Uri("PUT AZURE DEPLOYED LINK OF AUTHENTICATION SERVICE HERE");
                 //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer " + token);
                 var jsonstring = JsonConvert.SerializeObject(userRequest);
                 var obj = new StringContent(jsonstring, System.Text.Encoding.UTF8, "application/json");
@@ -86,8 +86,8 @@ namespace BankPortal.Controllers
 
                 else if (response.StatusCode == HttpStatusCode.InternalServerError)
                 {
-                    ModelState.AddModelError("", "Bad credential.");
-                    ViewBag.Message = "Bad credential.";
+                    ModelState.AddModelError("", "Please check your credentials!");
+                    ViewBag.Message = "Please check your credentials!";
                     return View("CustomError");
                 }
                 else

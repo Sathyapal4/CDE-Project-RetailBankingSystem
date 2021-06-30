@@ -23,4 +23,6 @@ namespace AccountManagementModule
                     webBuilder.UseStartup<Startup>();
                 });
     }
+
+    
 }
